@@ -1,4 +1,9 @@
 #!/usr/bin/python3
+"""
+function def pascal_triangle(n): that returns a list of lists of integers
+representing the Pascal's triangle of n
+"""
+
 
 def pascal_triangle(n):
     """returns a list of lists of integers representing the Pascal's
@@ -36,6 +41,7 @@ def pascal_triangle(n):
                 triangle[i].append(triangle[i-1][j-1] + triangle[i-1][j])
 
             # This process continues until all of the elements in the new row
-            # have been calculated, at which point a final 1 is appended.
+            # have been calculated, at which point a final 1 is appended to
+            # the end of the row to complete it.
             triangle[i].append(1)
         return triangle
