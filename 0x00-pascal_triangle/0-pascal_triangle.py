@@ -15,6 +15,7 @@ def pascal_triangle(n):
     Returns:
         list: integers representing Pascal's triangle.
     """
+
     # if n is less or 0 return an empty list
     if n <= 0:
         return []
