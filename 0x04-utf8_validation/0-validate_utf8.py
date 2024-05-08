@@ -2,7 +2,7 @@
 """
 A method that determines
 if a given data set represents
-a valid UTF-8 encoding 
+a valid UTF-8 encoding
 """
 
 
