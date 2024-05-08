@@ -16,7 +16,7 @@ def validUTF8(data):
 
     Returns:
         boolean: true if the data is
-        a valid utf-8 encoded, 
+        a valid utf-8 encoded,
         otherwise false
     """
     utf8valid = 0
