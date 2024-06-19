@@ -1,49 +1,28 @@
 #!/usr/bin/python3
-"""
-function def pascal_triangle(n):
-that returns a list of lists of integers
-representing the Pascal's triangle of n
+"""Prime game module.
 """
 
 
-def pascal_triangle(n):
+def isWinner(x, nums):
+    """Determines the winner of a prime game session with `x` rounds.
     """
-    returns a list of lists of integers
-    representing the Pascal's triangle of n
-
-    Args:
-        n (integer): number of rows
-
-    Returns:
-        list: integers representing Pascal's triangle.
-    """
-    # if n is less or 0 return an empty list
-    if n <= 0:
-        return []
-
-    else:
-        # Initialize a variable called triangle with a list containing a
-        # single element, [1], which represents the first row of the triangle.
-        triangle = [[1]]
-
-        for i in range(1, n):
-            # On each iteration of the loop, a new list is created and
-            # appended to the triangle variable. This list starts with a
-            # single element, 1, which represents the first element of the
-            # new row.
-            triangle.append([1])
-
-            # The function then enters a nested loop that iterates over the
-            # elements in the previous row (the row with an index of i-1) and
-            # calculates the value of each element in the new row (the row
-            # with an index of i) based on the sum of the elements in the
-            # previous row that are directly above and to the left and right
-            # of the current element.
-            for j in range(1, i):
-                triangle[i].append(triangle[i-1][j-1] + triangle[i-1][j])
-
-            # This process continues until all of the elements in the new row
-            # have been calculated, at which point a final 1 is appended to
-            # the end of the row to complete it.
-            triangle[i].append(1)
-        return triangle
+    if x < 1 or not nums:
+        return None
+    marias_wins, bens_wins = 0, 0
+    # generate primes with a limit of the maximum number in nums
+    n = max(nums)
+    primes = [True for _ in range(1, n + 1, 1)]
+    primes[0] = False
+    for i, is_prime in enumerate(primes, 1):
+        if i == 1 or not is_prime:
+            continue
+        for j in range(i + i, n + 1, i):
+            primes[j - 1] = False
+    # filter the number of primes less than n in nums for each round
+    for _, n in zip(range(x), nums):
+        primes_count = len(list(filter(lambda x: x, primes[0: n])))
+        bens_wins += primes_count % 2 == 0
+        marias_wins += primes_count % 2 == 1
+    if marias_wins == bens_wins:
+        return None
+    return 'Maria' if marias_wins > bens_wins else 'Ben'
